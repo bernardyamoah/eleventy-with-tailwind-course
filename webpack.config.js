@@ -7,18 +7,18 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.pcss$/i,
+        
         use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
       },
     ],
   },
   output: {
-    path: path.resolve(__dirname, "dist", "assets"),
+    path: path.resolve(__dirname, "dist", "_bundle"),
     filename: "main.bundle.js",
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "main.bundle.css",
+      filename: "main.css",
     }),
   ],
 };
