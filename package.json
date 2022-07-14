@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "cross-env NODE_ENV=production npm-run-all  -p build:*",
+    "build:eleventy": "eleventy",
     
-    "build": "eleventy",
-    "build:css": "npx tailwindcss -i ./src/_bundle/main.css -o ./dist/_bundle/main.css --watch ",
+    "build:css": "npx tailwindcss -i ./src/_bundle/main.css -o ./dist/_bundle/output.css --watch ",
     "start": "npm-run-all -p build:* -p start:*",
     "start:eleventy": "eleventy --serve "
   

@@ -1,15 +1,17 @@
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
-
-module.exports = (config) => {
-  config.addPlugin(syntaxHighlight);
- 
-  config.setTemplateFormats(["jpg", "png", "webp", "md", "njk"]);
-  config.setBrowserSyncConfig({
-    files: ["dist/**/*"],
-    open: true,
+const { DateTime } = require("luxon");
+module.exports = (eleventyConfig) => {
+  eleventyConfig.addPlugin(syntaxHighlight);
+  eleventyConfig.addPassthroughCopy("./src/admin");
+  eleventyConfig.addPassthroughCopy("./src/_bundle");
+  eleventyConfig.addPassthroughCopy("./src/assets");
+  // eleventyConfig.setTemplateFormats(["jpg", "png", "webp", "md", "njk"]);
+  
+  eleventyConfig.addFilter("postDate", (dateObj) => {
+    return DateTime.fromJSDate(dateObj).toLocaleString(
+      DateTime.DATETIME_MED_WITH_WEEKDAY
+    );
   });
-  config.setDataDeepMerge(true);
-
   return {
     dir: {
       input: "src",
